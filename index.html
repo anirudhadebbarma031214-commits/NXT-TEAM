@@ -70,6 +70,39 @@ body.cursor-press .cursor-halo{width:25px;height:25px}
 @media(hover:hover) and (pointer:fine){body.custom-cursor,body.custom-cursor a,body.custom-cursor button,body.custom-cursor input,body.custom-cursor textarea,body.custom-cursor select{cursor:none!important}}
 @media(max-width:760px),(hover:none){.cursor-core,.cursor-halo{display:none}}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;filter:none;transition:none}.hero .eyebrow,.hero h1,.hero .lead,.hero .actions,.hero .launch{animation:none}.hero:before{animation:none}.cursor-core,.cursor-halo{display:none}}
+
+/* NXT EXPANSION — command palette, live desk and richer motion */
+.command-overlay{position:fixed;inset:0;z-index:2000;display:none;place-items:start center;padding:14vh 18px 20px;background:#03050bd9;backdrop-filter:blur(14px)}
+.command-overlay.open{display:grid;animation:overlay-in .22s ease both}
+@keyframes overlay-in{from{opacity:0}to{opacity:1}}
+.command-box{width:min(620px,100%);border:1px solid #69d5ff66;border-radius:20px;background:#0d1321;box-shadow:0 30px 100px #000b;overflow:hidden;animation:command-in .35s var(--ease-out) both}
+@keyframes command-in{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+.command-search{width:100%;padding:20px 22px;border:0;border-bottom:1px solid var(--line);outline:0;background:transparent;color:white;font:inherit;font-size:1.05rem}
+.command-list{padding:9px;display:grid;gap:5px;max-height:48vh;overflow:auto}
+.command-item{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:12px 14px;border:1px solid transparent;border-radius:11px;background:transparent;color:#f5f7ff;text-align:left;font:inherit;cursor:pointer;transition:.2s}
+.command-item:hover,.command-item:focus-visible{outline:0;background:#69d5ff15;border-color:#69d5ff55;transform:translateX(3px)}
+.command-item small{color:var(--muted)}
+.command-hint{padding:11px 17px;border-top:1px solid var(--line);font-size:.75rem;color:var(--muted)}
+.deck{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;margin-top:25px}
+.deck-panel{padding:25px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,#151c2c,#0d111c);min-height:180px;position:relative;overflow:hidden}
+.deck-panel:after{content:"";position:absolute;width:180px;height:180px;right:-90px;top:-90px;border-radius:50%;background:#69d5ff12;filter:blur(5px);pointer-events:none}
+.deck-time{font-size:clamp(2rem,6vw,3.5rem);font-weight:900;letter-spacing:-.06em;font-variant-numeric:tabular-nums}
+.deck-date{color:var(--muted);font-size:.85rem}
+.idea-text{font-size:1.12rem;font-weight:700;min-height:58px;margin:13px 0}
+.deck-actions{display:flex;gap:9px;flex-wrap:wrap}
+.deck-actions button{cursor:pointer;color:#f5f7ff}
+.shortcut-key{font: .72rem ui-monospace,monospace;padding:3px 7px;border:1px solid var(--line);border-radius:6px;color:var(--muted)}
+.ticker{overflow:hidden;border-block:1px solid var(--line);background:#ffffff05;padding:12px 0;margin:10px 0}
+.ticker-track{display:flex;width:max-content;gap:34px;white-space:nowrap;animation:ticker-scroll 34s linear infinite;color:#b7c4d8;font-size:.78rem;font-weight:800;letter-spacing:.14em}
+.ticker:hover .ticker-track{animation-play-state:paused}
+@keyframes ticker-scroll{to{transform:translateX(-50%)}}
+.project-card{transform-style:preserve-3d}
+.project-card .tag{transition:color .25s ease}
+#idea-next{border:1px solid #69d5ff66;border-radius:11px;padding:10px 14px;background:#69d5ff18;font-weight:800}
+#command-open{border:1px solid var(--line);border-radius:10px;padding:8px 11px;background:#ffffff08;color:var(--muted);cursor:pointer;font:inherit;font-size:.8rem}
+#command-open:hover{border-color:var(--blue);color:white}
+@media(max-width:760px){.deck{grid-template-columns:1fr}.command-overlay{padding-top:10vh}}
+@media(prefers-reduced-motion:reduce){.ticker-track{animation:none}.command-overlay.open,.command-box{animation:none}}
 </style></head><body><div class="progress-line" id="page-progress"></div><div class="cursor-core" id="nxt-cursor-core" aria-hidden="true"></div><div class="cursor-halo" id="nxt-cursor-halo" aria-hidden="true"></div><button id="back-top" type="button" aria-label="Back to top">↑</button>
 <header class="nav"><div class="wrap navin"><a class="brand" href="#">NXT <span>TEAM.</span></a><nav class="links" id="links"><a href="#about">About</a><a href="#origin">Our origin</a><a href="#about-me">Founder</a><a href="#divisions">Divisions</a><a href="#sound">Sound</a><a href="#projects">Projects</a><a href="#collab">Collab</a><a href="#launch">Launch</a></nav><a class="btn" href="#divisions">Explore NXT ↗</a><button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false">☰</button></div></header>
 <main><section class="hero"><div class="wrap"><div class="eyebrow">Independent minds. Infinite possibilities.</div><h1>THE NEXT<br><span class="grad">CHAPTER.</span></h1><p class="lead">We turn ambitious ideas into digital experiences. Games, software, AI and sound — made with curiosity and built to move forward.</p><div class="actions"><a class="btn" href="#divisions">Discover what we do ↗</a><a class="btn" href="#about" style="border-color:var(--line);background:#ffffff08">Meet NXT</a></div><div class="launch" id="launch"><i class="pulse"></i><div><small>OFFICIAL REVEAL · 04 NOVEMBER 2026 · 5:00 PM IST</small><div id="countdown">Loading countdown…</div></div></div></div></section>
@@ -121,6 +154,10 @@ body.cursor-press .cursor-halo{width:25px;height:25px}
 <article class="card reveal"><div class="icon">🚢</div><h3>DROPSHIP TYCOON</h3><p>Tycoon game development project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/DROPSHIP-TYCOON" target="_blank" rel="noreferrer">SOURCE CODE ↗ · GAMES</a></article>
 <article class="card reveal"><div class="icon">🇮🇳</div><h3>BHARAT: CITY OF THREE</h3><p>Open-world city game concept set in India</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/BHARAT-CITY-OF-THREE" target="_blank" rel="noreferrer">SOURCE CODE ↗ · GAMES</a></article>
 </div><p class="muted" style="font-size:.82rem;margin-top:22px">Source code opens GitHub. Live demos are marked separately and will appear only after their website URLs are verified.</p><div class="no-results" id="project-empty">No projects match that search. Try another keyword or choose “All”.</div></div></section>
+
+<section class="section" id="control-deck"><div class="wrap reveal"><div class="eyebrow">NXT / CONTROL DECK</div><h2>Your creative <span class="grad">command centre.</span></h2><p class="lead">A little live dashboard for the NXT universe. Open the command palette with Ctrl + K to jump anywhere.</p><div class="deck"><article class="deck-panel"><div class="eyebrow">LOCAL SYSTEM TIME</div><div class="deck-time" id="nxt-clock">--:--:--</div><div class="deck-date" id="nxt-date">Loading local date…</div><div class="deck-actions" style="margin-top:18px"><button class="btn" id="command-open" type="button">⌘ Open command palette <span class="shortcut-key">CTRL K</span></button></div></article><article class="deck-panel"><div class="eyebrow">RANDOM BUILD INSPIRATION</div><div class="idea-text" id="idea-text">Every big project starts with one small experiment.</div><div class="deck-actions"><button id="idea-next" type="button">Generate an idea ↗</button></div></article></div></div></section>
+<div class="ticker" aria-label="NXT TEAM creative areas"><div class="ticker-track"><span>✦ NXT AI</span><span>✦ NXT GAMES</span><span>✦ NXT LABS</span><span>✦ NXT SOUND</span><span>✦ NXT WEB</span><span>✦ BUILT IN TRIPURA</span><span>✦ ALWAYS EXPERIMENTING</span><span>✦ NXT AI</span><span>✦ NXT GAMES</span><span>✦ NXT LABS</span><span>✦ NXT SOUND</span><span>✦ NXT WEB</span><span>✦ BUILT IN TRIPURA</span><span>✦ ALWAYS EXPERIMENTING</span></div></div>
+<div class="command-overlay" id="command-overlay" role="dialog" aria-modal="true" aria-label="NXT command palette"><div class="command-box"><input class="command-search" id="command-search" type="search" placeholder="Search sections and actions…" autocomplete="off" aria-label="Search commands"><div class="command-list" id="command-list"><button class="command-item" data-target="#projects" type="button">📁 Browse projects <small>Go to vault</small></button><button class="command-item" data-target="#divisions" type="button">🌌 Explore divisions <small>Go to divisions</small></button><button class="command-item" data-target="#about-me" type="button">👤 Meet the founder <small>Go to founder</small></button><button class="command-item" data-target="#sound" type="button">🎵 Open NXT Sound <small>Go to player</small></button><button class="command-item" data-target="#collab" type="button">🤝 Collaborate <small>Go to contact form</small></button><button class="command-item" data-action="top" type="button">⬆ Back to top <small>Scroll to top</small></button></div><div class="command-hint">↑ Search · Enter to open · Esc to close</div></div></div>
 <section class="section" id="collab"><div class="wrap"><div class="eyebrow">04 / BUILD TOGETHER</div><h2>Let's make something<br><span class="grad">bigger together.</span></h2><div class="collab-wrap"><div class="reveal"><p class="lead">NXT TEAM is open to creative collaborations with developers, designers, musicians, creators and studios. Got an idea, a project, or a skill to bring to the table? Tell us about it.</p><div class="card" style="margin-top:20px"><div class="icon">⚡</div><h3>Open to collaboration</h3><p>Games · AI · Websites · Software · Music · Creative projects</p><span class="tag">ONE TEAM. NEW POSSIBILITIES.</span></div><p class="muted" style="margin-top:18px">Share your idea and we'll start the conversation.</p></div><form class="collab-form reveal" id="collab-form"><div class="eyebrow">COLLAB REQUEST</div><label for="collab-name">Your name</label><input id="collab-name" name="name" autocomplete="name" required placeholder="Enter your name"><label for="collab-email">Your email</label><input id="collab-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"><label for="collab-type">What would you like to collaborate on?</label><select id="collab-type" name="type" required><option value="">Choose a category</option><option>Game development</option><option>AI / Software</option><option>Website / Web app</option><option>Music / Sound</option><option>Design / Content</option><option>Other idea</option></select><label for="collab-message">Tell us about your idea</label><textarea id="collab-message" name="message" required placeholder="What do you want to build together?"></textarea><button class="btn" type="submit">Send collaboration request ↗</button><p class="collab-note">This opens your email app with the details ready. Add the NXT TEAM contact email before sending.</p></form></div></div></section>
 
 <section class="section" id="roadmap"><div class="wrap reveal"><div class="eyebrow">06 / WHAT'S NEXT</div><h2>The NXT <span class="grad">roadmap.</span></h2><p class="lead">A living plan for turning experiments into polished releases. Priorities can evolve as we build.</p><div class="roadmap-grid" style="margin-top:28px"><article class="roadmap-step"><strong>01 / ORGANISE</strong><h3>One project hub</h3><p>Bring every NXT creation into one searchable library with clear project pages.</p></article><article class="roadmap-step"><strong>02 / POLISH</strong><h3>Better releases</h3><p>Improve performance, mobile layouts, accessibility and reliability across projects.</p></article><article class="roadmap-step"><strong>03 / CONNECT</strong><h3>Build together</h3><p>Make it easier for creators and developers to share ideas and collaborate.</p></article><article class="roadmap-step"><strong>04 / EXPAND</strong><h3>More experiences</h3><p>Ship new games, AI experiments, tools, music and interactive web projects.</p></article></div></div></section>
@@ -211,6 +248,27 @@ if(projectGrid){
  });
  filterProjects();
 }
+
+/* NXT CONTROL DECK: local clock and idea generator */
+const clockEl=document.getElementById('nxt-clock'),dateEl=document.getElementById('nxt-date');
+function updateNxtClock(){const now=new Date();if(clockEl)clockEl.textContent=now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});if(dateEl)dateEl.textContent=now.toLocaleDateString([],{weekday:'long',year:'numeric',month:'long',day:'numeric'})}
+updateNxtClock();setInterval(updateNxtClock,1000);
+const ideas=['Build a tiny game that turns Agartala streets into a playable world.','Create an AI tool that helps beginners learn by building.','Design a music visualizer that reacts to every beat.','Turn a useful everyday task into a beautiful one-screen web app.','Make a multiplayer challenge that friends can finish in five minutes.','Build a digital map that celebrates places across Northeast India.','Create a browser desktop with apps, windows and keyboard shortcuts.','Prototype a co-op game where teamwork matters more than winning.','Make a sound pack inspired by the energy of Indian street culture.','Ship a small project this week, then improve it from real feedback.'];
+const ideaText=document.getElementById('idea-text'),ideaNext=document.getElementById('idea-next');
+if(ideaNext)ideaNext.addEventListener('click',()=>{let next=ideas[Math.floor(Math.random()*ideas.length)];if(ideaText){ideaText.animate([{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(7px)'},{opacity:1,transform:'translateY(0)'}],{duration:380,easing:'ease'});ideaText.textContent=next}});
+/* NXT COMMAND PALETTE: keyboard and mouse navigation */
+(()=>{
+ const overlay=document.getElementById('command-overlay'),search=document.getElementById('command-search'),list=document.getElementById('command-list'),openBtn=document.getElementById('command-open');
+ if(!overlay||!search||!list)return;
+ const open=()=>{overlay.classList.add('open');search.value='';list.querySelectorAll('.command-item').forEach(x=>x.hidden=false);search.focus()};
+ const close=()=>{overlay.classList.remove('open');if(openBtn)openBtn.focus()};
+ if(openBtn)openBtn.addEventListener('click',open);
+ document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();open()}if(e.key==='Escape'&&overlay.classList.contains('open'))close();if(e.key==='Enter'&&overlay.classList.contains('open')){const first=[...list.querySelectorAll('.command-item')].find(x=>!x.hidden);if(first)first.click()}});
+ search.addEventListener('input',()=>{const q=search.value.trim().toLowerCase();list.querySelectorAll('.command-item').forEach(item=>item.hidden=!item.textContent.toLowerCase().includes(q))});
+ list.addEventListener('click',e=>{const item=e.target.closest('.command-item');if(!item)return;const target=item.dataset.target;if(target){document.querySelector(target)?.scrollIntoView({behavior:'smooth'});history.replaceState(null,'',target)}else if(item.dataset.action==='top'){scrollTo({top:0,behavior:'smooth'})}close()});
+ overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
+})();
+
 /* SCROLL PROGRESS + BACK TO TOP */
 const progress=document.getElementById('page-progress'),backTop=document.getElementById('back-top');
 function updateScrollUI(){const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?scrollY/max*100:0)+'%';backTop.classList.toggle('visible',scrollY>500)}
