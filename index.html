@@ -9,7 +9,33 @@
 .music-info{min-width:0}.music-kicker{font-size:.7rem;letter-spacing:.16em;color:var(--blue);font-weight:850}.music-title{font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.music-sub{font-size:.82rem;color:var(--muted)}
 .music-controls{grid-column:1/-1;display:flex;align-items:center;gap:12px}.music-play{width:43px;height:43px;border:0;border-radius:50%;background:linear-gradient(120deg,var(--blue),#a98bff);color:#080a12;font-size:1.05rem;font-weight:900;cursor:pointer;flex:none}.music-play:hover{transform:scale(1.06)}.music-seek{flex:1;min-width:40px;accent-color:var(--blue);cursor:pointer}.music-time{font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums}.music-volume{width:75px;accent-color:var(--violet);cursor:pointer}.music-note{grid-column:1/-1;color:var(--muted);font-size:.75rem;margin-top:-8px}
 @media(max-width:520px){.music-panel{grid-template-columns:auto 1fr;padding:16px;gap:13px}.music-art{width:54px;height:54px}.music-volume{width:58px}.music-controls{gap:8px}}
-</style></head><body>
+
+/* NXT TEAM 2.0 INTERACTIONS */
+.progress-line{position:fixed;top:0;left:0;height:3px;width:0;z-index:30;background:linear-gradient(90deg,var(--blue),var(--violet),#f1a8ff);box-shadow:0 0 14px #69d5ff88}
+.project-tools{display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:12px;margin:24px 0 20px;align-items:center}
+.project-search{width:100%;padding:15px 17px;border:1px solid var(--line);border-radius:13px;background:#0d1321;color:#fff;font:inherit;outline:none}
+.project-search:focus{border-color:var(--blue);box-shadow:0 0 0 3px #69d5ff18}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{border:1px solid var(--line);border-radius:999px;padding:9px 13px;background:#ffffff08;color:var(--muted);font:700 .78rem inherit;cursor:pointer}
+.filter-btn.active,.filter-btn:hover{color:#07111b;background:var(--blue);border-color:var(--blue)}
+.project-count{color:var(--muted);font-size:.82rem;margin:0 0 14px}
+.project-card[hidden]{display:none}
+.project-card .tag{margin-right:8px}
+.demo-status{color:#b6a8ff;letter-spacing:.04em}
+.roadmap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.roadmap-step{padding:22px;border:1px solid var(--line);border-radius:17px;background:#ffffff07}
+.roadmap-step strong{display:block;color:var(--blue);font-size:.75rem;letter-spacing:.13em;margin-bottom:10px}
+.roadmap-step p{margin:0;color:var(--muted);font-size:.9rem}
+.value-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.value-strip .card{min-height:155px}
+.quick-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+#back-top{position:fixed;right:22px;bottom:22px;z-index:20;width:48px;height:48px;border-radius:50%;border:1px solid #69d5ff66;background:#101a2b;color:white;font-size:1.2rem;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(10px);transition:.2s}
+#back-top.visible{opacity:1;pointer-events:auto;transform:none}
+.no-results{display:none;padding:28px;border:1px dashed var(--line);border-radius:16px;text-align:center;color:var(--muted);grid-column:1/-1}
+.no-results.show{display:block}
+@media(max-width:900px){.roadmap-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.project-tools{grid-template-columns:1fr}.roadmap-grid,.value-strip{grid-template-columns:1fr}.filter-row{gap:6px}.filter-btn{padding:8px 10px}}
+</style></head><body><div class="progress-line" id="page-progress"></div><button id="back-top" type="button" aria-label="Back to top">↑</button>
 <header class="nav"><div class="wrap navin"><a class="brand" href="#">NXT <span>TEAM.</span></a><nav class="links" id="links"><a href="#about">About</a><a href="#origin">Our origin</a><a href="#about-me">Founder</a><a href="#divisions">Divisions</a><a href="#sound">Sound</a><a href="#projects">Projects</a><a href="#collab">Collab</a><a href="#launch">Launch</a></nav><a class="btn" href="#divisions">Explore NXT ↗</a><button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false">☰</button></div></header>
 <main><section class="hero"><div class="wrap"><div class="eyebrow">Independent minds. Infinite possibilities.</div><h1>THE NEXT<br><span class="grad">CHAPTER.</span></h1><p class="lead">We turn ambitious ideas into digital experiences. Games, software, AI and sound — made with curiosity and built to move forward.</p><div class="actions"><a class="btn" href="#divisions">Discover what we do ↗</a><a class="btn" href="#about" style="border-color:var(--line);background:#ffffff08">Meet NXT</a></div><div class="launch" id="launch"><i class="pulse"></i><div><small>OFFICIAL REVEAL · 04 NOVEMBER 2026 · 5:00 PM IST</small><div id="countdown">Loading countdown…</div></div></div></div></section>
 <section class="section" id="about"><div class="wrap reveal"><div class="eyebrow">01 / Who we are</div><h2>Not the next.<br><span class="grad">The NXT.</span></h2><p class="lead">NXT TEAM is a creative technology collective focused on experimenting, learning and shipping projects that feel different. A new identity, the same drive to create.</p></div></section>
@@ -30,30 +56,33 @@
 <article class="card reveal"><div class="icon">🎵</div><h3>NXT SOUND</h3><p>Original sounds, music experiments and audio for digital culture.</p><span class="tag">Music & audio</span></article>
 <article class="card reveal"><div class="icon">🌐</div><h3>NXT WEB</h3><p>Modern websites and digital spaces designed for real people.</p><span class="tag">Web experiences</span></article>
 <article class="card reveal"><div class="icon">⚡</div><h3>NXT FUTURE</h3><p>A home for the ideas that don't fit inside a single category.</p><span class="tag">What's next</span></article></div></div></section>
-<section class="section" id="projects"><div class="wrap"><div class="head reveal"><div><div class="eyebrow">03 / THE NXT PROJECT VAULT</div><h2>Everything we've<br><span class="grad">built so far.</span></h2></div><p class="muted" style="max-width:390px">Explore the websites, web apps, experiments and digital tools created across the NXT universe. Each card opens its GitHub project.</p></div><div class="grid"><article class="card reveal"><div class="icon">🤖</div><h3>ANI AI</h3><p>AI assistant and experimental intelligence tools</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/ANI-AI" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · NXT AI</a></article>
-<article class="card reveal"><div class="icon">🧠</div><h3>NEXOUS AI</h3><p>AI-powered web experience</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/NEXOUS-AI" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · AI</a></article>
-<article class="card reveal"><div class="icon">✨</div><h3>NXT AI</h3><p>Your NXT AI project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/NXT-AI" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · AI</a></article>
-<article class="card reveal"><div class="icon">⚡</div><h3>NXT SPEED</h3><p>Internet speed test and network tools</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/NXT-SPEED" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · TOOLS</a></article>
-<article class="card reveal"><div class="icon">📸</div><h3>AIRGRAM</h3><p>Social platform concept and web app</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/AIRGRAM-" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · SOCIAL</a></article>
-<article class="card reveal"><div class="icon">💬</div><h3>NEAO CHAT</h3><p>Private room chat web app</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/NEAO-CHAT" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · CHAT</a></article>
-<article class="card reveal"><div class="icon">👨‍💻</div><h3>CodeTribe</h3><p>Developer community and project sharing</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/CodeTribe" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · COMMUNITY</a></article>
-<article class="card reveal"><div class="icon">🪟</div><h3>NXT-6</h3><p>NXT smart interface and web experiments</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/NXT-6" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · WEB</a></article>
-<article class="card reveal"><div class="icon">🎮</div><h3>PS-5</h3><p>PlayStation-inspired browser experience</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/PS-5" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · INTERACTIVE</a></article>
-<article class="card reveal"><div class="icon">🔊</div><h3>SPEAKER</h3><p>Bluetooth speaker simulator</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/SPEAKER" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · SIMULATOR</a></article>
-<article class="card reveal"><div class="icon">📚</div><h3>ANI KNOWS</h3><p>Knowledge and AI web project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/ANI-KNOWS" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · WEB</a></article>
-<article class="card reveal"><div class="icon">💻</div><h3>NXT OS</h3><p>Browser-based operating system concept</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/NXT-OS" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · WEB</a></article>
-<article class="card reveal"><div class="icon">🎨</div><h3>NXT UI</h3><p>NXT interface experiments</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/NXT-UI" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · DESIGN</a></article>
-<article class="card reveal"><div class="icon">🔎</div><h3>NXT LOOKUP</h3><p>Lookup and search utility</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/NXT-LOOKUP" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · TOOLS</a></article>
-<article class="card reveal"><div class="icon">🎓</div><h3>ANI TEACH</h3><p>Learning and education web project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/ANI-TEACH" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · EDUCATION</a></article>
-<article class="card reveal"><div class="icon">✉️</div><h3>AIR MAIL</h3><p>Email web app project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/AIR-MAIL" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · PRODUCTIVITY</a></article>
-<article class="card reveal"><div class="icon">🎧</div><h3>Listenify</h3><p>Music streaming app concept</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/Listenify" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · MUSIC</a></article>
-<article class="card reveal"><div class="icon">🕹️</div><h3>AS-3</h3><p>PS3 XMB-inspired web experience</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/AS-3" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · INTERACTIVE</a></article>
-<article class="card reveal"><div class="icon">🌐</div><h3>APEX Browser</h3><p>Browser project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/APEX-Browser" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · BROWSER</a></article>
-<article class="card reveal"><div class="icon">🖥️</div><h3>WIN10 Sim</h3><p>Windows 10 browser simulator</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/Win10Sim" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · SIMULATOR</a></article>
-<article class="card reveal"><div class="icon">✈️</div><h3>FLIGHTFINDER</h3><p>Flight search web project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/FLIGHTFINDER" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · TRAVEL</a></article>
-<article class="card reveal"><div class="icon">📥</div><h3>DREAMSAVE</h3><p>DreamSave download project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/DREAMSAVE" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · TOOLS</a></article>
-<article class="card reveal"><div class="icon">📨</div><h3>TEMP MAIL</h3><p>Temporary email web project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/TEMP-MAIL" target="_blank" rel="noreferrer">OPEN PROJECT ↗ · TOOLS</a></article></div><p class="muted" style="font-size:.82rem;margin-top:22px">Project links open GitHub repositories. A live website link is shown only when its deployment URL has been confirmed.</p></div></section>
+<section class="section" id="projects"><div class="wrap"><div class="head reveal"><div><div class="eyebrow">03 / THE NXT PROJECT VAULT</div><h2>Everything we've<br><span class="grad">built so far.</span></h2></div><p class="muted" style="max-width:390px">Explore the websites, web apps, experiments and digital tools created across the NXT universe. Each card opens its GitHub project.</p></div><div class="project-tools"><input class="project-search" id="project-search" type="search" placeholder="Search projects, tools, games…" aria-label="Search projects"><div class="filter-row" id="project-filters"><button class="filter-btn active" data-filter="all" type="button">All</button><button class="filter-btn" data-filter="ai" type="button">AI</button><button class="filter-btn" data-filter="tools" type="button">Tools</button><button class="filter-btn" data-filter="social" type="button">Social</button><button class="filter-btn" data-filter="games" type="button">Games</button><button class="filter-btn" data-filter="web" type="button">Web</button></div></div><p class="project-count" id="project-count" aria-live="polite">Loading projects…</p><div class="grid" id="project-grid"><article class="card reveal project-card"><div class="icon">🤖</div><h3>ANI AI</h3><p>AI assistant and experimental intelligence tools</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/ANI-AI" target="_blank" rel="noreferrer">SOURCE CODE ↗ · NXT AI</a></article>
+<article class="card reveal"><div class="icon">🧠</div><h3>NEXOUS AI</h3><p>AI-powered web experience</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/NEXOUS-AI" target="_blank" rel="noreferrer">SOURCE CODE ↗ · AI</a></article>
+<article class="card reveal"><div class="icon">✨</div><h3>NXT AI</h3><p>Your NXT AI project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/NXT-AI" target="_blank" rel="noreferrer">SOURCE CODE ↗ · AI</a></article>
+<article class="card reveal"><div class="icon">⚡</div><h3>NXT SPEED</h3><p>Internet speed test and network tools</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/NXT-SPEED" target="_blank" rel="noreferrer">SOURCE CODE ↗ · TOOLS</a></article>
+<article class="card reveal"><div class="icon">📸</div><h3>AIRGRAM</h3><p>Social platform concept and web app</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/AIRGRAM-" target="_blank" rel="noreferrer">SOURCE CODE ↗ · SOCIAL</a></article>
+<article class="card reveal"><div class="icon">💬</div><h3>NEAO CHAT</h3><p>Private room chat web app</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/NEAO-CHAT" target="_blank" rel="noreferrer">SOURCE CODE ↗ · CHAT</a></article>
+<article class="card reveal"><div class="icon">👨‍💻</div><h3>CodeTribe</h3><p>Developer community and project sharing</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/CodeTribe" target="_blank" rel="noreferrer">SOURCE CODE ↗ · COMMUNITY</a></article>
+<article class="card reveal"><div class="icon">🪟</div><h3>NXT-6</h3><p>NXT smart interface and web experiments</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/NXT-6" target="_blank" rel="noreferrer">SOURCE CODE ↗ · WEB</a></article>
+<article class="card reveal"><div class="icon">🎮</div><h3>PS-5</h3><p>PlayStation-inspired browser experience</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/PS-5" target="_blank" rel="noreferrer">SOURCE CODE ↗ · INTERACTIVE</a></article>
+<article class="card reveal"><div class="icon">🔊</div><h3>SPEAKER</h3><p>Bluetooth speaker simulator</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/SPEAKER" target="_blank" rel="noreferrer">SOURCE CODE ↗ · SIMULATOR</a></article>
+<article class="card reveal"><div class="icon">📚</div><h3>ANI KNOWS</h3><p>Knowledge and AI web project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/ANI-KNOWS" target="_blank" rel="noreferrer">SOURCE CODE ↗ · WEB</a></article>
+<article class="card reveal"><div class="icon">💻</div><h3>NXT OS</h3><p>Browser-based operating system concept</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/NXT-OS" target="_blank" rel="noreferrer">SOURCE CODE ↗ · WEB</a></article>
+<article class="card reveal"><div class="icon">🎨</div><h3>NXT UI</h3><p>NXT interface experiments</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/NXT-UI" target="_blank" rel="noreferrer">SOURCE CODE ↗ · DESIGN</a></article>
+<article class="card reveal"><div class="icon">🔎</div><h3>NXT LOOKUP</h3><p>Lookup and search utility</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/NXT-LOOKUP" target="_blank" rel="noreferrer">SOURCE CODE ↗ · TOOLS</a></article>
+<article class="card reveal"><div class="icon">🎓</div><h3>ANI TEACH</h3><p>Learning and education web project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/ANI-TEACH" target="_blank" rel="noreferrer">SOURCE CODE ↗ · EDUCATION</a></article>
+<article class="card reveal"><div class="icon">✉️</div><h3>AIR MAIL</h3><p>Email web app project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/AIR-MAIL" target="_blank" rel="noreferrer">SOURCE CODE ↗ · PRODUCTIVITY</a></article>
+<article class="card reveal"><div class="icon">🎧</div><h3>Listenify</h3><p>Music streaming app concept</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/Listenify" target="_blank" rel="noreferrer">SOURCE CODE ↗ · MUSIC</a></article>
+<article class="card reveal"><div class="icon">🕹️</div><h3>AS-3</h3><p>PS3 XMB-inspired web experience</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/AS-3" target="_blank" rel="noreferrer">SOURCE CODE ↗ · INTERACTIVE</a></article>
+<article class="card reveal"><div class="icon">🌐</div><h3>APEX Browser</h3><p>Browser project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/APEX-Browser" target="_blank" rel="noreferrer">SOURCE CODE ↗ · BROWSER</a></article>
+<article class="card reveal"><div class="icon">🖥️</div><h3>WIN10 Sim</h3><p>Windows 10 browser simulator</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/Win10Sim" target="_blank" rel="noreferrer">SOURCE CODE ↗ · SIMULATOR</a></article>
+<article class="card reveal"><div class="icon">✈️</div><h3>FLIGHTFINDER</h3><p>Flight search web project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/FLIGHTFINDER" target="_blank" rel="noreferrer">SOURCE CODE ↗ · TRAVEL</a></article>
+<article class="card reveal"><div class="icon">📥</div><h3>DREAMSAVE</h3><p>DreamSave download project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/DREAMSAVE" target="_blank" rel="noreferrer">SOURCE CODE ↗ · TOOLS</a></article>
+<article class="card reveal"><div class="icon">📨</div><h3>TEMP MAIL</h3><p>Temporary email web project</p><a class="tag" href="https://github.com/anirudhadebbarma031214-commits/TEMP-MAIL" target="_blank" rel="noreferrer">SOURCE CODE ↗ · TOOLS</a></article></div><p class="muted" style="font-size:.82rem;margin-top:22px">Source code opens GitHub. Live demos are marked separately and will appear only after their website URLs are verified.</p><div class="no-results" id="project-empty">No projects match that search. Try another keyword or choose “All”.</div></div></section>
 <section class="section" id="collab"><div class="wrap"><div class="eyebrow">04 / BUILD TOGETHER</div><h2>Let's make something<br><span class="grad">bigger together.</span></h2><div class="collab-wrap"><div class="reveal"><p class="lead">NXT TEAM is open to creative collaborations with developers, designers, musicians, creators and studios. Got an idea, a project, or a skill to bring to the table? Tell us about it.</p><div class="card" style="margin-top:20px"><div class="icon">⚡</div><h3>Open to collaboration</h3><p>Games · AI · Websites · Software · Music · Creative projects</p><span class="tag">ONE TEAM. NEW POSSIBILITIES.</span></div><p class="muted" style="margin-top:18px">Share your idea and we'll start the conversation.</p></div><form class="collab-form reveal" id="collab-form"><div class="eyebrow">COLLAB REQUEST</div><label for="collab-name">Your name</label><input id="collab-name" name="name" autocomplete="name" required placeholder="Enter your name"><label for="collab-email">Your email</label><input id="collab-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"><label for="collab-type">What would you like to collaborate on?</label><select id="collab-type" name="type" required><option value="">Choose a category</option><option>Game development</option><option>AI / Software</option><option>Website / Web app</option><option>Music / Sound</option><option>Design / Content</option><option>Other idea</option></select><label for="collab-message">Tell us about your idea</label><textarea id="collab-message" name="message" required placeholder="What do you want to build together?"></textarea><button class="btn" type="submit">Send collaboration request ↗</button><p class="collab-note">This opens your email app with the details ready. Add the NXT TEAM contact email before sending.</p></form></div></div></section>
+
+<section class="section" id="roadmap"><div class="wrap reveal"><div class="eyebrow">06 / WHAT'S NEXT</div><h2>The NXT <span class="grad">roadmap.</span></h2><p class="lead">A living plan for turning experiments into polished releases. Priorities can evolve as we build.</p><div class="roadmap-grid" style="margin-top:28px"><article class="roadmap-step"><strong>01 / ORGANISE</strong><h3>One project hub</h3><p>Bring every NXT creation into one searchable library with clear project pages.</p></article><article class="roadmap-step"><strong>02 / POLISH</strong><h3>Better releases</h3><p>Improve performance, mobile layouts, accessibility and reliability across projects.</p></article><article class="roadmap-step"><strong>03 / CONNECT</strong><h3>Build together</h3><p>Make it easier for creators and developers to share ideas and collaborate.</p></article><article class="roadmap-step"><strong>04 / EXPAND</strong><h3>More experiences</h3><p>Ship new games, AI experiments, tools, music and interactive web projects.</p></article></div></div></section>
+<section class="section" id="values"><div class="wrap reveal"><div class="eyebrow">07 / THE NXT CODE</div><h2>How we <span class="grad">build.</span></h2><div class="value-strip"><article class="card"><div class="icon">🧪</div><h3>Experiment first</h3><p>Try ideas, learn from mistakes and keep improving.</p></article><article class="card"><div class="icon">🛠️</div><h3>Make it real</h3><p>A good idea matters most when people can actually use it.</p></article><article class="card"><div class="icon">🚀</div><h3>Keep moving</h3><p>Every release is a new starting point, not the finish line.</p></article></div><div class="quick-actions"><a class="btn" href="https://github.com/anirudhadebbarma031214-commits" target="_blank" rel="noreferrer">Explore all repositories ↗</a><button class="btn" id="share-site" type="button">Copy NXT TEAM link ↗</button></div><p class="muted" id="share-status" aria-live="polite" style="font-size:.8rem;margin-top:10px"></p></div></section>
 <section class="manifesto reveal"><div class="eyebrow">05 / Our mindset</div><blockquote>“We don't wait for the future.<br><span class="grad">We build what comes next.</span>”</blockquote><p class="muted">NXT TEAM · 2026</p></section></main>
 <footer class="footer"><div class="wrap footin"><span>© <span id="year"></span> NXT TEAM. Built for what's next.</span><span>NEW IDENTITY. NEW POSSIBILITIES. · <a href="https://github.com/anirudhadebbarma031214-commits/NXT-TEAM">GitHub ↗</a></span></div></footer>
 <script>
@@ -75,4 +104,53 @@ vol.addEventListener('input',()=>{audio.volume=Number(vol.value)});
 audio.addEventListener('ended',()=>{status.textContent='Track finished. Play it again?';seek.value=0});
 audio.addEventListener('error',()=>{status.textContent='Audio file could not be loaded. Please check the track file in the assets folder.'});
 audio.volume=Number(vol.value);
+
+/* PROJECT VAULT SEARCH + FILTERS */
+const projectGrid=document.getElementById('project-grid');
+if(projectGrid){
+ const cards=[...projectGrid.querySelectorAll('.project-card')];
+ const searchBox=document.getElementById('project-search');
+ const filterBox=document.getElementById('project-filters');
+ const count=document.getElementById('project-count');
+ const empty=document.getElementById('project-empty');
+ let activeFilter='all';
+ cards.forEach(card=>{
+   const label=(card.querySelector('.tag')?.textContent||'').toLowerCase();
+   const title=(card.querySelector('h3')?.textContent||'').toLowerCase();
+   const description=(card.querySelector('p')?.textContent||'').toLowerCase();
+   const full=title+' '+description+' '+label;
+   card.dataset.search=full;
+   card.dataset.category=label.includes('ai')?'ai':label.includes('tools')||label.includes('simulator')?'tools':label.includes('social')||label.includes('chat')||label.includes('community')?'social':label.includes('games')?'games':'web';
+   const source=card.querySelector('a.tag');
+   if(source){
+     source.textContent='SOURCE CODE ↗';
+     const status=document.createElement('span');status.className='tag demo-status';status.textContent='LIVE DEMO NOT VERIFIED';card.appendChild(status);
+   }
+ });
+ function filterProjects(){
+   const q=searchBox.value.trim().toLowerCase();let shown=0;
+   cards.forEach(card=>{
+     const okText=card.dataset.search.includes(q);
+     const okCategory=activeFilter==='all'||card.dataset.category===activeFilter;
+     const visible=okText&&okCategory;card.hidden=!visible;if(visible)shown++;
+   });
+   count.textContent=shown+' of '+cards.length+' projects shown';
+   empty.classList.toggle('show',shown===0);
+ }
+ searchBox.addEventListener('input',filterProjects);
+ filterBox.addEventListener('click',e=>{
+   const btn=e.target.closest('[data-filter]');if(!btn)return;
+   activeFilter=btn.dataset.filter;
+   filterBox.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b===btn));
+   filterProjects();
+ });
+ filterProjects();
+}
+/* SCROLL PROGRESS + BACK TO TOP */
+const progress=document.getElementById('page-progress'),backTop=document.getElementById('back-top');
+function updateScrollUI(){const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?scrollY/max*100:0)+'%';backTop.classList.toggle('visible',scrollY>500)}
+addEventListener('scroll',updateScrollUI,{passive:true});updateScrollUI();backTop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+/* SHARE THE CURRENT SITE URL */
+const shareButton=document.getElementById('share-site'),shareStatus=document.getElementById('share-status');
+if(shareButton)shareButton.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(location.href);shareStatus.textContent='Website link copied. Share it with your team!'}catch(e){shareStatus.textContent='Copy is blocked by this browser. Copy the address from your browser bar.'}});
 </script></body></html>
