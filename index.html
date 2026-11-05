@@ -35,7 +35,42 @@
 .no-results.show{display:block}
 @media(max-width:900px){.roadmap-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.project-tools{grid-template-columns:1fr}.roadmap-grid,.value-strip{grid-template-columns:1fr}.filter-row{gap:6px}.filter-btn{padding:8px 10px}}
-</style></head><body><div class="progress-line" id="page-progress"></div><button id="back-top" type="button" aria-label="Back to top">↑</button>
+
+/* NXT MOTION SYSTEM — smooth entrances, depth and custom cursor */
+:root{--ease-out:cubic-bezier(.16,1,.3,1)}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{overflow-x:hidden}
+a,button,.btn,.card,.filter-btn{ -webkit-tap-highlight-color:transparent }
+.btn,.card,.roadmap-step,.music-panel,.feature,.collab-form,.filter-btn{transition:transform .55s var(--ease-out),border-color .45s ease,box-shadow .55s ease,background-color .4s ease}
+.btn:hover{transform:translateY(-4px) scale(1.015);box-shadow:0 16px 42px #69d5ff26}
+.card:hover{transform:translateY(-8px) scale(1.012);box-shadow:0 22px 55px #0007,0 0 0 1px #69d5ff12}
+.roadmap-step:hover{transform:translateY(-6px);border-color:#69d5ff66;box-shadow:0 16px 40px #0005}
+.reveal{opacity:0;transform:translate3d(0,32px,0) scale(.985);filter:blur(5px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out),filter .9s var(--ease-out);will-change:transform,opacity}
+.reveal.show{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}
+.grid .reveal:nth-child(2),.roadmap-grid .roadmap-step:nth-child(2){transition-delay:.08s}
+.grid .reveal:nth-child(3),.roadmap-grid .roadmap-step:nth-child(3){transition-delay:.16s}
+.grid .reveal:nth-child(4),.roadmap-grid .roadmap-step:nth-child(4){transition-delay:.24s}
+.hero .eyebrow{animation:rise-in .8s var(--ease-out) both}
+.hero h1{animation:rise-in 1s .12s var(--ease-out) both}
+.hero .lead{animation:rise-in 1s .22s var(--ease-out) both}
+.hero .actions,.hero .launch{animation:rise-in 1s .34s var(--ease-out) both}
+@keyframes rise-in{from{opacity:0;transform:translateY(24px);filter:blur(7px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+.hero:before{content:"";position:absolute;width:380px;height:380px;left:55%;top:12%;border-radius:50%;background:radial-gradient(circle,#69d5ff17,transparent 68%);filter:blur(12px);animation:float-glow 9s ease-in-out infinite alternate;pointer-events:none}
+@keyframes float-glow{from{transform:translate3d(-20px,-10px,0) scale(.9)}to{transform:translate3d(45px,35px,0) scale(1.18)}}
+.progress-line{transition:width .08s linear}
+#back-top{transition:opacity .3s ease,transform .45s var(--ease-out),background .3s ease}
+#back-top:hover{transform:translateY(-5px) scale(1.08);background:#17263b}
+.cursor-core,.cursor-halo{position:fixed;left:0;top:0;z-index:1000;pointer-events:none;border-radius:50%;opacity:0;transform:translate(-50%,-50%);transition:opacity .25s ease,width .25s ease,height .25s ease,background .25s ease,border-color .25s ease}
+.cursor-core{width:7px;height:7px;background:#fff;mix-blend-mode:difference}
+.cursor-halo{width:34px;height:34px;border:1px solid #69d5ffbb;background:#69d5ff0c;box-shadow:0 0 22px #69d5ff24}
+body.cursor-active .cursor-core,body.cursor-active .cursor-halo{opacity:1}
+body.cursor-hover .cursor-core{width:4px;height:4px;background:var(--blue)}
+body.cursor-hover .cursor-halo{width:54px;height:54px;border-color:#b39aff;background:#9c7bff20;box-shadow:0 0 28px #9c7bff55}
+body.cursor-press .cursor-halo{width:25px;height:25px}
+@media(hover:hover) and (pointer:fine){body.custom-cursor,body.custom-cursor a,body.custom-cursor button,body.custom-cursor input,body.custom-cursor textarea,body.custom-cursor select{cursor:none!important}}
+@media(max-width:760px),(hover:none){.cursor-core,.cursor-halo{display:none}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;filter:none;transition:none}.hero .eyebrow,.hero h1,.hero .lead,.hero .actions,.hero .launch{animation:none}.hero:before{animation:none}.cursor-core,.cursor-halo{display:none}}
+</style></head><body><div class="progress-line" id="page-progress"></div><div class="cursor-core" id="nxt-cursor-core" aria-hidden="true"></div><div class="cursor-halo" id="nxt-cursor-halo" aria-hidden="true"></div><button id="back-top" type="button" aria-label="Back to top">↑</button>
 <header class="nav"><div class="wrap navin"><a class="brand" href="#">NXT <span>TEAM.</span></a><nav class="links" id="links"><a href="#about">About</a><a href="#origin">Our origin</a><a href="#about-me">Founder</a><a href="#divisions">Divisions</a><a href="#sound">Sound</a><a href="#projects">Projects</a><a href="#collab">Collab</a><a href="#launch">Launch</a></nav><a class="btn" href="#divisions">Explore NXT ↗</a><button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false">☰</button></div></header>
 <main><section class="hero"><div class="wrap"><div class="eyebrow">Independent minds. Infinite possibilities.</div><h1>THE NEXT<br><span class="grad">CHAPTER.</span></h1><p class="lead">We turn ambitious ideas into digital experiences. Games, software, AI and sound — made with curiosity and built to move forward.</p><div class="actions"><a class="btn" href="#divisions">Discover what we do ↗</a><a class="btn" href="#about" style="border-color:var(--line);background:#ffffff08">Meet NXT</a></div><div class="launch" id="launch"><i class="pulse"></i><div><small>OFFICIAL REVEAL · 04 NOVEMBER 2026 · 5:00 PM IST</small><div id="countdown">Loading countdown…</div></div></div></div></section>
 <section class="section" id="about"><div class="wrap reveal"><div class="eyebrow">01 / Who we are</div><h2>Not the next.<br><span class="grad">The NXT.</span></h2><p class="lead">NXT TEAM is a creative technology collective focused on experimenting, learning and shipping projects that feel different. A new identity, the same drive to create.</p></div></section>
@@ -93,6 +128,29 @@
 <section class="manifesto reveal"><div class="eyebrow">05 / Our mindset</div><blockquote>“We don't wait for the future.<br><span class="grad">We build what comes next.</span>”</blockquote><p class="muted">NXT TEAM · 2026</p></section></main>
 <footer class="footer"><div class="wrap footin"><span>© <span id="year"></span> NXT TEAM. Built for what's next.</span><span>NEW IDENTITY. NEW POSSIBILITIES. · <a href="https://github.com/anirudhadebbarma031214-commits/NXT-TEAM">GitHub ↗</a></span></div></footer>
 <script>
+
+/* NXT CUSTOM CURSOR — glow dot becomes a halo/pointer on interactive elements */
+(()=>{
+ const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(!fine||reduce)return;
+ const core=document.getElementById('nxt-cursor-core'),halo=document.getElementById('nxt-cursor-halo');
+ if(!core||!halo)return;
+ document.body.classList.add('custom-cursor');
+ let x=innerWidth/2,y=innerHeight/2,hx=x,hy=y,active=false,raf=0;
+ const move=e=>{x=e.clientX;y=e.clientY;if(!active){active=true;document.body.classList.add('cursor-active')}};
+ const animate=()=>{hx+=(x-hx)*.22;hy+=(y-hy)*.22;core.style.transform='translate3d('+x+'px,'+y+'px,0) translate(-50%,-50%)';halo.style.transform='translate3d('+hx+'px,'+hy+'px,0) translate(-50%,-50%)';raf=requestAnimationFrame(animate)};
+ addEventListener('pointermove',move,{passive:true});
+ addEventListener('pointerleave',()=>document.body.classList.remove('cursor-active','cursor-hover'));
+ addEventListener('pointerenter',()=>document.body.classList.add('cursor-active'));
+ document.addEventListener('pointerover',e=>{if(e.target.closest('a,button,[role="button"],.card,.filter-btn'))document.body.classList.add('cursor-hover')});
+ document.addEventListener('pointerout',e=>{if(e.target.closest('a,button,[role="button"],.card,.filter-btn')&&!e.relatedTarget?.closest('a,button,[role="button"],.card,.filter-btn'))document.body.classList.remove('cursor-hover')});
+ addEventListener('pointerdown',()=>document.body.classList.add('cursor-press'));
+ addEventListener('pointerup',()=>document.body.classList.remove('cursor-press'));
+ animate();
+ addEventListener('pagehide',()=>cancelAnimationFrame(raf),{once:true});
+})();
+
 const target=new Date('2026-11-04T17:00:00+05:30').getTime(),cd=document.getElementById('countdown');function tick(){let d=target-Date.now();if(d<=0){cd.textContent='THE NEXT ERA STARTS NOW.';return}let day=Math.floor(d/86400000),h=Math.floor(d%86400000/3600000),m=Math.floor(d%3600000/60000),s=Math.floor(d%60000/1000);cd.textContent=day+'D  '+String(h).padStart(2,'0')+'H  '+String(m).padStart(2,'0')+'M  '+String(s).padStart(2,'0')+'S'}tick();setInterval(tick,1000);document.getElementById('year').textContent=new Date().getFullYear();const menu=document.getElementById('menu'),links=document.getElementById('links');menu.onclick=()=>{let o=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(o));menu.textContent=o?'✕':'☰'};links.querySelectorAll('a').forEach(a=>a.onclick=()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'});const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 /* COLLAB REQUEST: compose an email without a third-party form service */
