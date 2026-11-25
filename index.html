@@ -406,8 +406,6 @@ body{background:#050505;color:#f5f5f2;font-family:Arial,Helvetica,sans-serif}
 document.getElementById('year').textContent=new Date().getFullYear();const menu=document.getElementById('menu'),links=document.getElementById('links');menu.onclick=()=>{let o=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(o));menu.textContent=o?'✕':'☰'};links.querySelectorAll('a').forEach(a=>a.onclick=()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'});const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 /* COLLAB REQUEST: compose an email without a third-party form service */
-document.getElementById('collab-form').addEventListener('submit',async e=>{e.preventDefault();const form=e.currentTarget;if(!form.reportValidity())return;const fd=new FormData(form);const request='NXT TEAM COLLABORATION REQUEST\n\nName: '+fd.get('name')+'\nEmail: '+fd.get('email')+'\nCollaboration: '+fd.get('type')+'\n\nIdea:\n'+fd.get('message');const status=document.getElementById('collab-status');try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(request)}else{const helper=document.createElement('textarea');helper.value=request;helper.setAttribute('readonly','');helper.style.position='fixed';helper.style.opacity='0';document.body.appendChild(helper);helper.select();const copied=document.execCommand('copy');helper.remove();if(!copied)throw new Error('Clipboard unavailable')}status.textContent='Request copied! Paste it into your email or message app to send it.';form.reset()}catch(error){window.prompt('Copy your collaboration request:',request);status.textContent='A copy prompt was opened. Copy the text from it to send your request.'}});
-
 /* NXT SOUND PLAYER CONTROLS */
 const audio=document.getElementById('nxt-audio'),playBtn=document.getElementById('nxt-play'),seek=document.getElementById('nxt-seek'),vol=document.getElementById('nxt-volume'),current=document.getElementById('nxt-current'),duration=document.getElementById('nxt-duration'),status=document.getElementById('nxt-status');
 const stamp=t=>{if(!Number.isFinite(t))return '0:00';let m=Math.floor(t/60),s=Math.floor(t%60);return m+':'+String(s).padStart(2,'0')};
@@ -548,8 +546,9 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.119.2';
 const nxtDb = createClient('https://xocizxszrqiexfxculsa.supabase.co','sb_publishable_kkoFxldELeXQCUXTYpr_Qg_mejrPEyD');
 const collabForm = document.getElementById('collab-form');
 if (collabForm) collabForm.addEventListener('submit', async (event) => {
-  const form = event.currentTarget;
-  const values = new FormData(form);
+  event.preventDefault();
+  if (!collabForm.reportValidity()) return;
+  const values = new FormData(collabForm);
   const request = {
     name: String(values.get('name') || '').trim(),
     email: String(values.get('email') || '').trim(),
@@ -557,15 +556,19 @@ if (collabForm) collabForm.addEventListener('submit', async (event) => {
     message: String(values.get('message') || '').trim()
   };
   const status = document.getElementById('collab-status');
-  if (!request.name || !request.email || !request.message) return;
+  const button = collabForm.querySelector('button[type="submit"]');
+  button.disabled = true;
   try {
     const { error } = await nxtDb.from('nxt_collab_requests').insert(request);
     if (error) throw error;
-    if (status) status.textContent = '✓ Sent securely to the NXT TEAM inbox. Thank you!';
+    status.textContent = '✓ Sent securely to the NXT TEAM inbox. Thank you!';
+    collabForm.reset();
   } catch (error) {
     console.error('NXT collaboration submission failed:', error);
-    if (status) status.textContent = 'Online inbox is not ready yet. Your request was copied as a backup if clipboard access is available.';
-  }
+    const backup = 'NXT TEAM COLLABORATION REQUEST\\n\\nName: ' + request.name + '\\nEmail: ' + request.email + '\\nCollaboration: ' + request.collaboration_type + '\\n\\nIdea:\\n' + request.message;
+    try { await navigator.clipboard.writeText(backup); status.textContent = 'Online inbox is not ready yet. Your request was copied as a backup.'; }
+    catch { status.textContent = 'Online inbox is not ready yet. Please try again later.'; }
+  } finally { button.disabled = false; }
 });
 </script>
 </body></html>
