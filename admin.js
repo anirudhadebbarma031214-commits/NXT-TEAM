@@ -79,7 +79,7 @@ function renderAll(){
   renderProjects();renderInbox();renderAnnouncements();renderActivity();
   const recent=state.activity.slice(0,5);
   $('#recent-activity').innerHTML=recent.length?recent.map(a=>'<div class="activity-row"><span class="activity-dot"></span><div><b>'+escapeHTML(a.action)+'</b><small>'+escapeHTML(JSON.stringify(a.details||{}))+'</small></div><time>'+escapeHTML(date(a.created_at))+'</time></div>').join(''):'<div class="empty">No activity yet. Changes will appear here.</div>';
-  const form=$('#settings-form');for(const key of ['announcement','status_label','contact_email'])form.elements[key].value=state.settings[key]?.value || '';
+  const form=$('#settings-form');for(const key of ['announcement','status_label','contact_email'])form.elements[key].value=(typeof state.settings[key] === 'string' ? state.settings[key] : state.settings[key]?.value) || '';
 }
 function renderProjects(){
   const q=$('#project-filter').value.toLowerCase(),status=$('#project-status-filter').value;
@@ -152,7 +152,7 @@ $('#inbox-list').addEventListener('click',async e=>{
 });
 $('#settings-form').addEventListener('submit',async e=>{
  e.preventDefault();const fd=new FormData(e.currentTarget);
- try{for(const key of ['announcement','status_label','contact_email']){const value=fd.get(key).trim();const {error}=await supabase.from('nxt_site_settings').upsert({key,value:JSON.stringify(value),updated_at:new Date().toISOString()});if(error)throw error}
+ try{for(const key of ['announcement','status_label','contact_email']){const value=fd.get(key).trim();const {error}=await supabase.from('nxt_site_settings').upsert({key,value:value,updated_at:new Date().toISOString()});if(error)throw error}
  await logAction('Updated site settings');await refreshAll();$('#settings-status').textContent='Settings saved.';toast('Settings saved.')}
  catch(error){$('#settings-status').textContent=errorText(error)}
 });
