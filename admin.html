@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080808"><title>NXT CONTROL CENTER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div id="login-screen" class="login-screen">
+  <div class="login-orbit"></div><div class="login-card">
+    <a class="wordmark" href="./"><span>NXT</span> TEAM<span class="mark-dot">.</span></a>
+    <div class="eyebrow">RESTRICTED ACCESS / 001</div><h1>Control<br><em>the next.</em></h1>
+    <p class="muted">Sign in with your authorized administrator account.</p>
+    <form id="login-form">
+      <label for="login-email">ADMIN EMAIL</label><input id="login-email" type="email" autocomplete="username" required placeholder="you@example.com">
+      <label for="login-password">PASSWORD</label><input id="login-password" type="password" autocomplete="current-password" required placeholder="Your password">
+      <button class="primary wide" type="submit"><span>AUTHENTICATE</span><b>↗</b></button>
+      <p id="login-error" class="error" role="alert"></p>
+    </form>
+    <div class="login-foot"><span>SECURE SESSION</span><span>SUPABASE AUTH · RLS</span></div>
+  </div>
+</div>
+<div id="app" class="app hidden">
+  <aside class="sidebar" id="sidebar">
+    <a class="wordmark" href="./"><span>NXT</span> TEAM<span class="mark-dot">.</span></a>
+    <div class="side-label">WORKSPACE</div>
+    <nav id="nav">
+      <button class="nav-item active" data-view="overview"><i>◫</i> Overview <kbd>01</kbd></button>
+      <button class="nav-item" data-view="projects"><i>▦</i> Projects <kbd>02</kbd></button>
+      <button class="nav-item" data-view="inbox"><i>↳</i> Collaboration <kbd>03</kbd><span id="inbox-count" class="nav-count">0</span></button>
+      <button class="nav-item" data-view="announcements"><i>◈</i> Announcements <kbd>04</kbd></button>
+      <button class="nav-item" data-view="settings"><i>⚙</i> Site settings <kbd>05</kbd></button>
+      <button class="nav-item" data-view="activity"><i>⌁</i> Activity log <kbd>06</kbd></button>
+    </nav>
+    <div class="sidebar-bottom"><div class="online"><span></span> SYSTEM OPERATIONAL</div><div class="user-mini"><div class="avatar">N</div><div><b id="admin-email">Admin</b><small>SUPER ADMIN</small></div><button id="logout" title="Sign out">↗</button></div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><button id="mobile-menu" class="icon-btn">☰</button><div><div class="eyebrow">NXT TEAM / CONTROL CENTER</div><div id="page-title" class="top-title">Overview</div></div><div class="top-actions"><span class="live-pill"><i></i> LIVE SYSTEM</span><a class="outline-btn" href="./" target="_blank" rel="noopener">VIEW WEBSITE ↗</a></div></header>
+    <div class="content">
+      <section class="view active" id="view-overview">
+        <div class="welcome-row"><div><div class="eyebrow">COMMAND DECK / <span id="today"></span></div><h1>Good to see you<span class="yellow">.</span></h1><p class="muted">Your creative network, one control surface.</p></div><button class="primary" data-jump="projects">+ NEW PROJECT</button></div>
+        <div class="stat-grid">
+          <article class="stat-card"><div class="stat-top">TOTAL PROJECTS <span>↗</span></div><strong id="stat-projects">—</strong><small>Across your workspace</small><div class="stat-line"></div></article>
+          <article class="stat-card"><div class="stat-top">PUBLISHED <span>◉</span></div><strong id="stat-published">—</strong><small>Live project entries</small><div class="stat-line"></div></article>
+          <article class="stat-card"><div class="stat-top">NEW REQUESTS <span>↳</span></div><strong id="stat-inbox">—</strong><small>Waiting for review</small><div class="stat-line"></div></article>
+          <article class="stat-card"><div class="stat-top">ANNOUNCEMENTS <span>◈</span></div><strong id="stat-announcements">—</strong><small>Currently active</small><div class="stat-line"></div></article>
+        </div>
+        <div class="section-grid"><div class="panel"><div class="panel-head"><div><div class="eyebrow">LATEST SIGNALS</div><h2>Recent activity</h2></div><button class="text-btn" data-jump="activity">VIEW ALL ↗</button></div><div id="recent-activity" class="activity-list"><div class="empty">Loading activity…</div></div></div>
+        <div class="panel quick-panel"><div class="eyebrow">QUICK ACCESS</div><h2>Move fast.</h2><button data-jump="projects">▦ <span>Manage projects</span> ↗</button><button data-jump="inbox">↳ <span>Open collaboration inbox</span> ↗</button><button data-jump="announcements">◈ <span>Publish an announcement</span> ↗</button><div class="system-note"><span class="pulse"></span><div><b>Protected workspace</b><small>Admin-only data is guarded by database policies.</small></div></div></div></div>
+      </section>
+      <section class="view" id="view-projects"><div class="view-heading"><div><div class="eyebrow">PORTFOLIO DATABASE / 02</div><h1>Projects<span class="yellow">.</span></h1><p class="muted">Publish and organize the NXT TEAM project vault.</p></div><button class="primary" id="new-project">+ ADD PROJECT</button></div><div class="toolbar"><input id="project-filter" placeholder="Search projects…"><select id="project-status-filter"><option value="">All statuses</option><option>published</option><option>draft</option><option>archived</option></select></div><div id="projects-table" class="table-wrap"></div></section>
+      <section class="view" id="view-inbox"><div class="view-heading"><div><div class="eyebrow">INBOUND / 03</div><h1>Collaboration<span class="yellow">.</span></h1><p class="muted">Review ideas and incoming partnership requests.</p></div></div><div class="toolbar"><input id="inbox-filter" placeholder="Search name, email or message…"><select id="inbox-status-filter"><option value="">All requests</option><option>new</option><option>reviewing</option><option>accepted</option><option>declined</option></select></div><div id="inbox-list" class="inbox-list"></div></section>
+      <section class="view" id="view-announcements"><div class="view-heading"><div><div class="eyebrow">BROADCAST / 04</div><h1>Announcements<span class="yellow">.</span></h1><p class="muted">Control what visitors see on the public site.</p></div><button class="primary" id="new-announcement">+ NEW ANNOUNCEMENT</button></div><div id="announcement-list" class="announcement-list"></div></section>
+      <section class="view" id="view-settings"><div class="view-heading"><div><div class="eyebrow">CONFIGURATION / 05</div><h1>Site settings<span class="yellow">.</span></h1><p class="muted">Update the public site's key messages.</p></div></div><form id="settings-form" class="panel settings-form"><label>HOMEPAGE ANNOUNCEMENT<input name="announcement" maxlength="180" placeholder="A short message for the homepage"></label><label>STATUS LABEL<input name="status_label" maxlength="80" placeholder="Building what's next"></label><label>CONTACT EMAIL<input name="contact_email" type="email" placeholder="hello@example.com"></label><button class="primary" type="submit">SAVE SETTINGS ↗</button><p id="settings-status" class="muted"></p></form><div class="panel security-panel"><div class="eyebrow">SECURITY NOTE</div><h2>Admin access is not a signup form.</h2><p class="muted">Only users whose trusted Supabase app_metadata role is set to admin can access protected records. Never share a service-role or secret key with this website.</p></div></section>
+      <section class="view" id="view-activity"><div class="view-heading"><div><div class="eyebrow">AUDIT TRAIL / 06</div><h1>Activity log<span class="yellow">.</span></h1><p class="muted">A record of changes made in this control center.</p></div></div><div id="activity-table" class="table-wrap"></div></section>
+    </div>
+    <footer class="main-footer"><span>© NXT TEAM · CONTROL CENTER</span><span>BUILD THE NEXT. <b>●</b></span></footer>
+  </main>
+</div>
+<div id="modal" class="modal hidden"><div class="modal-card"><div class="modal-head"><div><div class="eyebrow" id="modal-kicker">EDITOR</div><h2 id="modal-title">New item</h2></div><button id="modal-close" class="icon-btn">✕</button></div><form id="modal-form"><div id="modal-fields"></div><div class="modal-actions"><button type="button" class="outline-btn" id="modal-cancel">CANCEL</button><button type="submit" class="primary">SAVE CHANGES ↗</button></div><p id="modal-error" class="error"></p></form></div></div>
+<div id="toast" class="toast" role="status"></div>
+<script type="module" src="admin.js"></script>
+</body></html>
