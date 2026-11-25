@@ -1,15 +1,17 @@
 # NXT TEAM — Official Website
 
-A responsive single-page portfolio and project hub for NXT TEAM.
+A responsive single-page portfolio and interactive project hub for NXT TEAM.
 
 ## Features
 - Black-and-yellow developer portfolio design
 - Responsive desktop and mobile navigation
-- NXT divisions and founder sections
+- NXT divisions, founder story, roadmap and values
 - Project search and category filters
 - NXT Sound audio player with play, pause, seek and volume controls
 - Live local clock and random project idea generator
 - Ctrl/⌘ + K command palette
+- NXT Lab interactive terminal with local demo commands
+- Reaction-speed mini-game with last and best score
 - Collaboration form with required-field and email validation; copies a formatted request for the visitor to send
 - Share-link copy control, scroll progress and back-to-top button
 - Scroll reveal animations, custom pointer effects and reduced-motion support
