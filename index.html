@@ -103,9 +103,49 @@ body.cursor-press .cursor-halo{width:25px;height:25px}
 #command-open:hover{border-color:var(--blue);color:white}
 @media(max-width:760px){.deck{grid-template-columns:1fr}.command-overlay{padding-top:10vh}}
 @media(prefers-reduced-motion:reduce){.ticker-track{animation:none}.command-overlay.open,.command-box{animation:none}}
+/* NXT TEAM — DEVELOPER PORTFOLIO REDESIGN */
+:root{--bg:#050505;--panel:#0b0b0b;--muted:#a5a5a5;--blue:#f4e500;--violet:#f4e500;--line:#ffffff24}
+body{background:#050505;color:#f5f5f2;font-family:Arial,Helvetica,sans-serif}
+.nav{background:#050505ed;border-bottom:1px solid #ffffff20}
+.brand span,.grad{background:none;color:#f4e500;-webkit-text-fill-color:#f4e500}
+.eyebrow,.tag{color:#f4e500}
+.btn{border-radius:2px;border:1px solid #f4e500;background:#f4e500;color:#050505;padding:12px 18px;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase}
+.btn:hover{background:#fff;border-color:#fff;color:#050505}
+.secondary-btn{background:transparent;color:#f5f5f2;border-color:#ffffff55}
+.card,.deck-panel,.roadmap-step,.collab-form,.music-panel{background:#090909;border:1px solid #ffffff2b;border-radius:2px;box-shadow:none}
+.card:hover{border-color:#f4e500}
+.section h2{text-transform:uppercase;font-weight:950;letter-spacing:-.06em}
+.project-search,.collab-form input,.collab-form select,.collab-form textarea{background:#090909;border-radius:2px}
+.filter-btn{border-radius:2px}.filter-btn.active,.filter-btn:hover{background:#f4e500;color:#050505;border-color:#f4e500}
+.music-play{background:#f4e500;color:#050505}
+.feature{background:#0a0a0a;border:1px solid #f4e50066;border-radius:2px}
+.progress-line{background:#f4e500;box-shadow:0 0 14px #f4e50088}
+.cursor-halo{border-color:#f4e500;background:#f4e5000c}
+.hero.dev-hero{min-height:760px;padding:100px 0 70px;background:radial-gradient(ellipse at 76% 44%,#f4e5000b,transparent 35%),#050505;overflow:hidden}
+.dev-hero-inner{display:grid;grid-template-columns:1.4fr .6fr;gap:30px;align-items:center;position:relative;z-index:1}
+.dev-word{font-size:clamp(4.5rem,13vw,11.8rem)!important;line-height:.78!important;letter-spacing:-.095em!important;font-weight:1000!important;margin:45px 0 28px!important;color:transparent;-webkit-text-stroke:2px #f5f5f2;text-transform:uppercase;white-space:nowrap}
+.dev-star{color:#f4e500;-webkit-text-stroke:0;font-size:.22em;vertical-align:top;margin-left:12px}
+.dev-meta{display:flex;gap:18px;flex-wrap:wrap;color:#f4e500;font-size:.67rem;font-weight:800;letter-spacing:.13em}
+.dev-meta span+span:before{content:"/";margin-right:18px;color:#777}
+.dev-hero .lead{max-width:580px;color:#aaa;font-size:1rem;margin-top:28px}
+.dev-stats{display:flex;gap:38px;margin-top:60px;padding-top:22px;border-top:1px solid #ffffff30;max-width:620px}
+.dev-stats div{display:grid;gap:2px}.dev-stats strong{font-size:2rem;line-height:1;color:#f4e500}.dev-stats span{font-size:.6rem;letter-spacing:.12em;color:#999}
+.dev-portrait{height:370px;position:relative;display:grid;place-items:center}
+.portrait-core{width:190px;height:190px;border:1px solid #f4e500;display:grid;place-items:center;background:linear-gradient(145deg,#161616,#050505);box-shadow:0 0 70px #f4e50012;z-index:2}
+.portrait-core span{font-size:4.5rem;font-weight:1000;letter-spacing:-.1em;color:#f4e500}
+.portrait-orbit{position:absolute;border:1px solid #ffffff35;border-radius:50%;width:285px;height:285px;transform:rotate(-28deg) scaleY(.55)}
+.orbit-two{width:350px;height:350px;border-color:#f4e50055;transform:rotate(38deg) scaleY(.55)}
+.portrait-caption{position:absolute;bottom:8px;left:8%;font-size:.7rem;letter-spacing:.16em;color:#999;line-height:1.8}
+.portrait-caption b{color:#f4e500}.portrait-index{position:absolute;right:5%;top:12%;font-size:.7rem;color:#f4e500;letter-spacing:.15em}
+.dev-scroll{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:.62rem;letter-spacing:.2em;color:#888}.dev-scroll span{color:#f4e500;margin-left:12px}
+.ticker{border-color:#ffffff24;background:#f4e50008}.ticker-track{color:#e9e9e9}
+#idea-next{background:#f4e500;color:#050505;border-color:#f4e500;border-radius:2px}
+.command-box{border-radius:2px;background:#090909;border-color:#f4e50066}
+@media(max-width:900px){.dev-hero-inner{grid-template-columns:1fr}.dev-portrait{height:280px;max-width:420px;width:100%;margin:5px auto 0}.dev-word{white-space:normal;font-size:clamp(4rem,16vw,8rem)!important}}
+@media(max-width:620px){.hero.dev-hero{min-height:auto;padding:75px 0 65px}.dev-word{margin:34px 0 22px!important;-webkit-text-stroke:1.2px #f5f5f2}.dev-meta{gap:8px;font-size:.58rem}.dev-meta span+span:before{margin-right:8px}.dev-stats{gap:18px;margin-top:40px}.dev-stats strong{font-size:1.55rem}.dev-stats span{font-size:.52rem}.dev-portrait{height:240px}.portrait-core{width:145px;height:145px}.portrait-core span{font-size:3.4rem}.portrait-orbit{width:220px;height:220px}.orbit-two{width:270px;height:270px}.dev-scroll{display:none}}
 </style></head><body><div class="progress-line" id="page-progress"></div><div class="cursor-core" id="nxt-cursor-core" aria-hidden="true"></div><div class="cursor-halo" id="nxt-cursor-halo" aria-hidden="true"></div><button id="back-top" type="button" aria-label="Back to top">↑</button>
 <header class="nav"><div class="wrap navin"><a class="brand" href="#">NXT <span>TEAM.</span></a><nav class="links" id="links"><a href="#about">About</a><a href="#origin">Our origin</a><a href="#about-me">Founder</a><a href="#divisions">Divisions</a><a href="#sound">Sound</a><a href="#projects">Projects</a><a href="#collab">Collab</a><a href="#launch">Launch</a></nav><a class="btn" href="#divisions">Explore NXT ↗</a><button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false">☰</button></div></header>
-<main><section class="hero"><div class="wrap"><div class="eyebrow">Independent minds. Infinite possibilities.</div><h1>THE NEXT<br><span class="grad">CHAPTER.</span></h1><p class="lead">We turn ambitious ideas into digital experiences. Games, software, AI and sound — made with curiosity and built to move forward.</p><div class="actions"><a class="btn" href="#divisions">Discover what we do ↗</a><a class="btn" href="#about" style="border-color:var(--line);background:#ffffff08">Meet NXT</a></div><div class="launch" id="launch"><i class="pulse"></i><div><small>OFFICIAL REVEAL · 04 NOVEMBER 2026 · 5:00 PM IST</small><div id="countdown">Loading countdown…</div></div></div></div></section>
+<main><section class="hero dev-hero"><div class="wrap dev-hero-inner"><div><div class="eyebrow">NXT TEAM / INDEPENDENT DEVELOPER & CREATOR</div><h1 class="dev-word">DEVELOPER<span class="dev-star">✳</span></h1><div class="dev-meta"><span>ANIRUDHA DEBBARMA</span><span>TRIPURA, INDIA</span><span>BUILDING SINCE 2021</span></div><p class="lead">I turn curious ideas into games, websites, software, AI experiments and sound. This is the work, the journey, and everything I'm building next.</p><div class="actions"><a class="btn" href="#projects">EXPLORE MY WORK ↗</a><a class="btn secondary-btn" href="#about-me">MEET THE FOUNDER</a></div><div class="dev-stats"><div><strong>05+</strong><span>CREATIVE FIELDS</span></div><div><strong>20+</strong><span>IDEAS & EXPERIMENTS</span></div><div><strong>∞</strong><span>THINGS LEFT TO BUILD</span></div></div></div><div class="dev-portrait"><div class="portrait-orbit"></div><div class="portrait-orbit orbit-two"></div><div class="portrait-core"><span>AD</span></div><div class="portrait-caption">NXT TEAM<br><b>FOUNDER / BUILDER</b></div><div class="portrait-index">01 — 26</div></div></div><div class="dev-scroll">SCROLL TO EXPLORE <span>↓</span></div></section>
 <section class="section" id="about"><div class="wrap reveal"><div class="eyebrow">01 / Who we are</div><h2>Not the next.<br><span class="grad">The NXT.</span></h2><p class="lead">NXT TEAM is a creative technology collective focused on experimenting, learning and shipping projects that feel different. A new identity, the same drive to create.</p></div></section>
 
 <section class="section" id="origin"><div class="wrap reveal"><div class="eyebrow">THE ORIGIN / BEFORE NXT</div><h2>One chapter ended.<br><span class="grad">The next began.</span></h2><p class="lead">Our journey began with ANI STUDIO — a place for games, websites, music and technology. Then came an unexpected stop: ANI STUDIO was banned. It felt like the end of the road, but the dream was bigger than one name.</p><div class="grid"><article class="card"><div class="eyebrow">CHAPTER 01</div><h3>ANI STUDIO</h3><p>The beginning of the creative journey. A name built around curiosity, experiments and big ideas.</p></article><article class="card"><div class="eyebrow">CHAPTER 02</div><h3>The setback</h3><p>When ANI STUDIO was banned, the original chapter had to stop. But the passion to create stayed alive.</p></article><article class="card"><div class="eyebrow">CHAPTER 03</div><h3>The comeback</h3><p>Instead of giving up, we took everything we learned and started again with a new identity.</p></article></div><div class="feature" style="margin-top:20px"><div><div class="eyebrow">CHAPTER 04 / THE NEXT ERA</div><h2><span class="grad">NXT STUDIO.</span></h2><p>A new home for games, AI, software, web experiences and sound. Not a replacement for the dream — its continuation.</p></div></div><div class="manifesto" style="padding:45px 10px 0"><blockquote>“ANI STUDIO was the beginning.<br><span class="grad">NXT STUDIO is the continuation.</span>”</blockquote><p class="muted">ONE DREAM. A NEW IDENTITY. ENDLESS POSSIBILITIES.</p></div></div></section>
