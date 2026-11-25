@@ -1,18 +1,22 @@
 # NXT TEAM — Official Website
 
-A responsive single-page launch website for NXT TEAM.
+A responsive single-page portfolio and project hub for NXT TEAM.
 
 ## Features
-- Futuristic dark theme with blue/violet gradients
-- Responsive desktop and mobile layout
-- Mobile navigation menu
-- Live countdown to **4 November 2026, 5:00 PM IST**
-- Divisions: NXT AI, NXT Games, NXT Labs, NXT Sound, NXT Web and NXT Future
-- Scroll reveal animations and reduced-motion support
-- No build tools or dependencies required
+- Black-and-yellow developer portfolio design
+- Responsive desktop and mobile navigation
+- NXT divisions and founder sections
+- Project search and category filters
+- NXT Sound audio player with play, pause, seek and volume controls
+- Live local clock and random project idea generator
+- Ctrl/⌘ + K command palette
+- Collaboration form with required-field and email validation; copies a formatted request for the visitor to send
+- Share-link copy control, scroll progress and back-to-top button
+- Scroll reveal animations, custom pointer effects and reduced-motion support
+- No build tools or external JavaScript dependencies required
 
 ## Run locally
-Open `index.html` in a browser.
+Open `index.html` in a browser. The audio player loads the MP3 in `assets/`.
 
 ## Publish with GitHub Pages
 1. Open the repository **Settings → Pages**.
@@ -21,4 +25,5 @@ Open `index.html` in a browser.
 4. Wait for the Pages deployment. The site will be available at:
    `https://anirudhadebbarma031214-commits.github.io/NXT-TEAM/`
 
-The countdown is configured for India Standard Time (UTC+05:30).
+## Collaboration form note
+The form currently copies the request to the visitor's clipboard. It does not send data to a private inbox or database because no submission service or contact destination is configured yet.
